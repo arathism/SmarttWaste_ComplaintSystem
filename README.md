@@ -1,31 +1,60 @@
-# Smart Waste Complaint System
+# ♻️ Smart Waste Management System
 
-## Overview
-This is a **mini full-stack web development project** — a Smart Waste Complaint System MVP that allows users to submit waste complaints with images. Data is stored in MongoDB.
+A web-based application to submit and manage waste-related complaints.  
+Users can report garbage issues with images, and admins can track and resolve them through a dashboard.
 
-## Features
-- User complaint submission with fields: city, area, year, garbage type, description, photo upload
-- Backend server using Node.js + Express
-- Photo storage using Multer
-- Complaint data stored in MongoDB
-- Desktop-focused, user-friendly UI
+---
 
-## Tech Stack
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
-- **File Uploads:** Multer
+##  Features
 
-## Folder Structure
+### User
+- Submit waste complaints
+- Enter city, area, garbage type, description
+- Upload image
+- Simple and user-friendly UI
+
+### Admin
+- Admin login
+- View all complaints from MongoDB
+- See uploaded images
+- Update complaint status:
+  - Submitted
+  - In Progress
+  - Pending
+  - Completed
+- Popup message on successful update
+- Logout option
+
+---
+
+## 🛠 Tech Stack
+
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js, Express.js
+- Database: MongoDB (Compass)
+- Image Upload: Multer
+- Version Control: Git, GitHub
+
+---
+
+##  Project Structure
+
 smartwaste/
 ├── backend/
-│ ├── server.js
 │ ├── models/
-│ │ └── complaintModel.js
+│ │ ├── Complaint.js
+│ │ └── Admin.js
 │ ├── routes/
-│ │ └── complaintRoutes.js
-│ └── uploads/
+│ │ ├── complaints.js
+│ │ └── admin.js
+│ └── server.js
+│
 ├── frontend/
-│ └── index.html
-├── package.json
+│ ├── index.html
+│ ├── admin.html
+│ └── uploads/
+│
 └── README.md
+
+yaml
+Copy code
