@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body { font-family: Arial; background:#f4f6f8; margin:0; padding:20px; }
+    h2 { color:#2c7be5; text-align:center; margin-bottom:20px; }
+    .logout-btn { background:#dc3545; color:white; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; float:right; margin-bottom:10px; }
+    .logout-btn:hover { background:#a71d2a; }
+    table { width:100%; border-collapse: collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); clear:both; }
+    th, td { padding:12px 15px; text-align:center; border-bottom:1px solid #ddd; font-size:14px; }
+    th { background-color:#2c7be5; color:white; font-weight:600; }
+    tr:hover { background-color:#f1f1f1; }
+    img { max-width:80px; border-radius:5px; }
+    select { padding:6px 8px; border-radius:5px; border:1px solid #ccc; }
+    button { padding:6px 10px; border:none; border-radius:5px; cursor:pointer; font-size:12px; font-weight:600; margin:2px; background-color:#2c7be5; color:white; }
+    button:hover { background-color:#1a5bb8; }
+  </style>
+</head>
+<body>
+
+<h2>Admin Dashboard - User Complaints</h2>
+<button class="logout-btn" onclick="logout()">Logout</button>
+
+<table id="complaintsTable">
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Area</th>
+      <th>Garbage Type</th>
+      <th>Description</th>
+      <th>Photo</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+const API_URL = "http://localhost:3000/api/complaints";
+
+// Load complaints
+async function loadComplaints() {
+  const tbody = document.querySelector("#complaintsTable tbody");
+  tbody.innerHTML = "";
+  const res = await fetch(API_URL);
+  const complaints = await res.json();
+
+  complaints.forEach(c => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${c.city}</td>
+      <td>${c.area}</td>
+      <td>${c.category}</td>
+      <td>${c.description}</td>
+      <td>${c.image ? `<img src="http://localhost:3000${c.image}">` : "-"}</td>
+      <td>
+        <select id="status-${c._id}">
+          <option value="In Progress" ${c.status==="In Progress"?"selected":""}>In Progress</option>
+          <option value="Completed" ${c.status==="Completed"?"selected":""}>Completed</option>
+          <option value="Pending" ${c.status==="Pending"?"selected":""}>Pending</option>
+        </select>
+      </td>
+      <td><button onclick="updateStatus('${c._id}')">Send</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Update status and show popup
+async function updateStatus(id) {
+  const select = document.getElementById(`status-${id}`);
+  const newStatus = select.value;
+
+  try {
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ status: newStatus })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      loadComplaints(); // Refresh table
+      if(newStatus === "Completed") {
+        alert("Completed successfully! ✅"); // Popup for completed status
+      } else {
+        alert("Status updated successfully!");
+      }
+    } else {
+      alert("Error: " + data.message);
+    }
+  } catch(err) {
+    console.error(err);
+    alert("Error connecting to server!");
+  }
+}
+
+// Logout
+function logout() { window.location.href="admin.html"; }
+
+// Load complaints on page load
+loadComplaints();
+</script>
+
+</body>
+</html>

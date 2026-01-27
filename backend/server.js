@@ -1,36 +1,27 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
-const complaintRoutes = require("./routes/complaintRoutes");
+const path = require("path");
 
 const app = express();
-
-// Middlewares
 app.use(cors());
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+app.use('/uploads', express.static(path.join(__dirname,'uploads')));
+app.use(express.static(path.join(__dirname,'../frontend'))); // Serve frontend
 
-// MongoDB connection
-mongoose
-  .connect("mongodb://127.0.0.1:27017/smartwaste", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.error(err));
+// Connect MongoDB
+mongoose.connect("mongodb://127.0.0.1:27017/smart_waste", {
+  useNewUrlParser:true,
+  useUnifiedTopology:true
+})
+.then(()=>console.log("MongoDB connected"))
+.catch(err=>console.error("MongoDB connection error:", err));
 
-// Routes
-// server.js
-// Serve uploads so images are accessible
-// Serve uploads folder so images can be accessed
-app.use('/uploads', express.static('uploads'));
+const complaintRoutes = require("./routes/complaints");
+const adminRoutes = require("./routes/admin");
 
-
+app.use("/api/complaints", complaintRoutes);
+app.use("/api/admin", adminRoutes);
 
 
-// Start server
-// server.js
-const complaintRoutes = require('./routes/complaintRoutes');
-app.use('/api/complaints', complaintRoutes);
- 
+app.listen(3000, ()=>console.log("Server running on http://localhost:3000"));
