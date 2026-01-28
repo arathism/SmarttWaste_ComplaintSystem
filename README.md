@@ -36,6 +36,7 @@ Users can report garbage issues with images, and admins can track and resolve th
 - Version Control: Git, GitHub
 
 ---
+![workflow of project](https://github.com/arathism/SmarttWaste_ComplaintSystem/blob/83acd760628fb6bbe8e249809af403d9dc9b59c3/WhatsApp%20Image%202026-01-28%20at%201.39.15%20PM.jpeg)
 ![submit complaint](https://github.com/arathism/SmarttWaste_ComplaintSystem/blob/0ab4df360e112672474ce9e0258e635459e38238/Screenshot%202026-01-28%20125531.png)
 ![submit completed sucessfully](https://github.com/arathism/SmarttWaste_ComplaintSystem/blob/9391fcb0e2be4a64fa4d64ef8b3d1cf724755226/Screenshot%202026-01-28%20125821.png)
 ![admin portal](https://github.com/arathism/SmarttWaste_ComplaintSystem/blob/565a7acf8c8f02c3fbb2fa6de8c1c4f1971cfdba/Screenshot%202026-01-28%20125834.png)
