@@ -37,7 +37,7 @@ Users can report garbage issues with images, and admins can track and resolve th
 
 ---
 ![submit complaint](https://github.com/arathism/SmarttWaste_ComplaintSystem/blob/0ab4df360e112672474ce9e0258e635459e38238/Screenshot%202026-01-28%20125531.png)
-
+![submit completed sucessfully](https://github.com/arathism/SmarttWaste_ComplaintSystem/blob/9391fcb0e2be4a64fa4d64ef8b3d1cf724755226/Screenshot%202026-01-28%20125821.png)
 ##  Project Structure
 
 smartwaste/
