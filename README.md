@@ -36,6 +36,7 @@ Users can report garbage issues with images, and admins can track and resolve th
 - Version Control: Git, GitHub
 
 ---
+![submit complaint](https://github.com/arathism/SmarttWaste_ComplaintSystem/blob/0ab4df360e112672474ce9e0258e635459e38238/Screenshot%202026-01-28%20125531.png)
 
 ##  Project Structure
 
